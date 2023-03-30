@@ -1,5 +1,5 @@
 # Smart contract requirements:
-* Smart contract of the EPC-20 standard token;
+* Smart contract of the ERC-20 standard token;
 * The maximum number of tokens is 2,147,483,648;
 * Long name of the token: HyperCycle Token;
 * Short name of the token: HYPC;
