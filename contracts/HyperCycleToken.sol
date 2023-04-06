@@ -20,7 +20,7 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
  * roles, as well as the default admin role, which will let it grant both minter
  * and pauser roles to other accounts.
  */
-contract HyperCycleToken is Context, AccessControl, ERC20Burnable, Pausable {
+contract HyperCycleToken is AccessControl, ERC20Burnable, Pausable {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
 
@@ -47,9 +47,15 @@ contract HyperCycleToken is Context, AccessControl, ERC20Burnable, Pausable {
      *
      * - the caller must have the `MINTER_ROLE`.
      */
-    function mint(address to, uint256 amount) public {
-        require(hasRole(MINTER_ROLE, _msgSender()), "ERC20PresetMinterPauser: must have minter role to mint");
-        require((totalSupply() + amount) <= MAX_SUPPLY, "Mint: Cannot mint more than initial supply");
+    function mint(address to, uint256 amount) external {
+        require(
+            hasRole(MINTER_ROLE, _msgSender()), 
+            "ERC20PresetMinterPauser: must have minter role to mint"
+        );
+        require(
+            (totalSupply() + amount) <= MAX_SUPPLY, 
+            "Mint: Cannot mint more than initial supply"
+        );
         _mint(to, amount);
     }
 
@@ -62,8 +68,11 @@ contract HyperCycleToken is Context, AccessControl, ERC20Burnable, Pausable {
      *
      * - the caller must have the `PAUSER_ROLE`.
      */
-    function pause() public {
-        require(hasRole(PAUSER_ROLE, _msgSender()), "ERC20PresetMinterPauser: must have pauser role to pause");
+    function pause() external {
+        require(
+            hasRole(PAUSER_ROLE, _msgSender()), 
+            "ERC20PresetMinterPauser: must have pauser role to pause"
+        );
         _pause();
     }
 
@@ -76,8 +85,11 @@ contract HyperCycleToken is Context, AccessControl, ERC20Burnable, Pausable {
      *
      * - the caller must have the `PAUSER_ROLE`.
      */
-    function unpause() public {
-        require(hasRole(PAUSER_ROLE, _msgSender()), "ERC20PresetMinterPauser: must have pauser role to unpause");
+    function unpause() external {
+        require(
+            hasRole(PAUSER_ROLE, _msgSender()), 
+            "ERC20PresetMinterPauser: must have pauser role to unpause"
+        );
         _unpause();
     }
 
@@ -88,13 +100,22 @@ contract HyperCycleToken is Context, AccessControl, ERC20Burnable, Pausable {
      *
      * Requirements:
      *
-     * - The HyperCycle token should be 6 decimals instead of default decimals. This is only for display purpose.
+     * - The HyperCycle token should be 6 decimals instead of default decimals. 
+     * This is only for display purpose.
      */
     function decimals() public view virtual override returns (uint8) {
         return 6;
     }
 
-    function _beforeTokenTransfer(address from, address to, uint256 amount) internal override whenNotPaused {
+    function _beforeTokenTransfer(
+        address from, 
+        address to, 
+        uint256 amount
+    ) 
+        internal 
+        override 
+        whenNotPaused 
+    {
         super._beforeTokenTransfer(from, to, amount);
     }
 }
