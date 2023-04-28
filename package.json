@@ -28,6 +28,7 @@
     "@truffle/contract": "^4.2.23",
     "@truffle/hdwallet-provider": "^1.1.0",
     "solidity-coverage": "^0.7.20",
+    "truffle": "^5.8.4",
     "truffle-plugin-verify": "^0.5.25"
   },
   "devDependencies": {
