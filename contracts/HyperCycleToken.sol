@@ -24,7 +24,7 @@ contract HyperCycleToken is AccessControl, ERC20Burnable, Pausable {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
 
-    uint256 public constant MAX_SUPPLY = 2147483648 * 10**uint256(6);
+    uint256 public constant MAX_SUPPLY = 2147483648;
 
     /**
      * @dev Grants `DEFAULT_ADMIN_ROLE`, `MINTER_ROLE` and `PAUSER_ROLE` to the
@@ -94,17 +94,17 @@ contract HyperCycleToken is AccessControl, ERC20Burnable, Pausable {
     }
 
     /**
-     * @dev Set the decimals to 6 decimals.
+     * @dev Set the decimals to 0 decimals.
      *
      * See {ERC20-decimals}.
      *
      * Requirements:
      *
-     * - The HyperCycle token should be 6 decimals instead of default decimals. 
+     * - The HyperCycle token should be 0 decimals instead of default decimals. 
      * This is only for display purpose.
      */
     function decimals() public view virtual override returns (uint8) {
-        return 6;
+        return 0;
     }
 
     function _beforeTokenTransfer(
