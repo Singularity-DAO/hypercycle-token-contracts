@@ -2,8 +2,8 @@
 * Smart contract of the ERC-20 standard token;
 * The maximum number of tokens is 2,147,483,648;
 * Long name of the token: HyperCycle Token;
-* Short name of the token: HYPC;
-* Decimal - 6;
+* Short name of the token: HyPC;
+* Decimal - 0;
 * Mint token function;
 * Functions of pause is to pause/unpause the transfers on the contract;
 
